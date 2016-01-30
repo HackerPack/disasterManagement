@@ -4,11 +4,30 @@ ref.onAuth(function(authData) {
   	console.log("inside if")
     // save the user's profile into the database so we can list users,
     // use them in Security and Firebase Rules, and show profiles
-    ref.child("users").child(authData.facebook.id).set({
-      fname: getFName(authData),
-      lname: getLName(authData),
-      id: getId(authData)
-    });
+    if (authData.facebook.id){
+    	  ref.child("users").child(authData.facebook.id).set({
+		      fname: getFName(authData),
+		      lname: getLName(authData),
+		      id: getId(authData)
+	    });
+    }
+    //ref.child("users").child(authData.facebook.id).set({
+      //fname: getFName(authData),
+      //lname: getLName(authData),
+      //id: getId(authData)
+    //});
+		if (authData.twitter.id){
+			ref.child("users").child(authData.twitter.id).set({
+					username: authData.twitter.username,
+					displayname: authData.twitter.displayName,
+					id: twitter.id
+				});
+		}
+    //ref.child("users").child(authData.twitter.id).set({
+      //fname: getFName(authData),
+      //lname: getLName(authData),
+      //id: getId(authData)
+    //});
   }
 });
 
