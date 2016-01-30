@@ -18,9 +18,12 @@ ref.onAuth(function(authData) {
     //});
 		if (authData.twitter.id){
 			ref.child("users").child(authData.twitter.id).set({
-					username: authData.twitter.username,
+					/*username: authData.twitter.username,
 					displayname: authData.twitter.displayName,
-					id: twitter.id
+					id: twitter.id*/
+					fname: getTwitterFName(authData),
+		      		lname: getTwitterLName(authData),
+		      		id: getTwitterId(authData)
 				});
 		}
     //ref.child("users").child(authData.twitter.id).set({
@@ -43,6 +46,19 @@ function getLName(authData){
 	return authData.facebook.cachedUserProfile.last_name;
 }
 
+
+function getTwitterId(authData){
+	return authData.twitter.id;
+}
+
+function getTwitterFName(authData){
+	return authData.twitter.cachedUserProfile.first_name;
+}
+
+function getTwitterLName(authData){
+	return authData.twitter.cachedUserProfile.last_name;
+}
+
 function loginFB(){
 
 	ref.authWithOAuthPopup("facebook", function(error, authData) {
@@ -62,7 +78,7 @@ function loginTwitter(){
   		if (error) {
    			console.log("Login Failed!", error);
   		} else {
-  			console.log("Authenticated successfully with payload:", authData);
+  			console.log("Authenticated successfully with payload:", authData.facebook.cachedUserProfile.first_name);  //authData
   			checkSession();
   		}
 	}, {
