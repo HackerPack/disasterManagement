@@ -24,13 +24,13 @@ function searchTask(term,keywords, callback){
 }
 function allTasks(disaster, callback){
   alert("Trying to search task");
-  var taskRef = new Firebase(FIRE_BASE_URL+tasks_TABLE);
+  var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE);
   taskRef.orderByChild("Taken").equalTo("0").on("value", function(snapshot) {
 
      var searchResult = [];
      snapshot.forEach(function(childSnapshot) {
         var temp = JSON.stringify(childSnapshot.val());
-        if(term){
+        if(disaster){
           var n = temp.search(disaster);
           if(n>-1){
             searchResult.push(childSnapshot.val());
