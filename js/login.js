@@ -78,7 +78,7 @@ function loginTwitter(){
   		if (error) {
    			console.log("Login Failed!", error);
   		} else {
-  			console.log("Authenticated successfully with payload:", authData.facebook.cachedUserProfile.first_name);  //authData
+  			console.log("Authenticated successfully with payload:", authData.twitter.cachedUserProfile.first_name);  //authData
   			checkSession();
   		}
 	}, {
