@@ -1,6 +1,7 @@
 ref.onAuth(function(authData) {
-	alert("check session");
+	console.log("outside if")
   if (authData && isNewUser) {
+  	console.log("inside if")
     // save the user's profile into the database so we can list users,
     // use them in Security and Firebase Rules, and show profiles
     ref.child("users").child(authData.facebook.id).set({
@@ -56,7 +57,6 @@ function logout(){
 
 function checkSession(){
 	authData = ref.getAuth();
-	alert("CheckSession");
 	console.log(authData);
 	if(authData){
 		window.location.href = "pages/index.html";
