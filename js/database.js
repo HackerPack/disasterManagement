@@ -1,12 +1,37 @@
-function searchBook(term, callback){
-  var bookRef = new Firebase(FIRE_BASE_URL+BOOKS_TABLE);
-  bookRef.orderByChild("status").on("value", function(snapshot) {
+function searchTask(term,keywords, callback){
+  var taskRef = new Firebase(FIRE_BASE_URL+tasks_TABLE);
+  taskRef.orderByChild("Taken").equalToon("value", function(snapshot) {
 
      var searchResult = [];
      snapshot.forEach(function(childSnapshot) {
         var temp = JSON.stringify(childSnapshot.val());
-        if(term){
-          var n = temp.search(term);
+        if(keywords){
+          for(var i=0;i<keywords.length;i++)
+          {
+            var n = temp.search(keywords[i]);
+            if(n>-1){
+            searchResult.push(childSnapshot.val());
+          }
+          temp = searchResult;
+         }
+       }
+        
+      });
+     console.log(searchResult);
+
+      callback(searchResult);
+  });
+}
+function allTasks(disaster, callback){
+  alert("Trying to search task");
+  var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE);
+  taskRef.orderByChild("Taken").equalTo("0").on("value", function(snapshot) {
+
+     var searchResult = [];
+     snapshot.forEach(function(childSnapshot) {
+        var temp = JSON.stringify(childSnapshot.val());
+        if(disaster){
+          var n = temp.search(disaster);
           if(n>-1){
             searchResult.push(childSnapshot.val());
           }
@@ -15,27 +40,33 @@ function searchBook(term, callback){
          searchResult.push(childSnapshot.val());
         }
       });
+     console.log(searchResult);
 
       callback(searchResult);
   });
 }
 
-function saveBook(book, callback){
-  var bookRef = new Firebase(FIRE_BASE_URL+BOOKS_TABLE);
-  var book_data = {};
-  book_data[book.isbn] = book;
-  bookRef.update(book_data, callback);
+function saveTask(task, callback){
+  ref.child("Tasks").push(task);
+  var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE);
+  task.forEach(function(object){
+    taskRef.update(object, callback);
+  });
+}
+  
+function takeTask(uid, requestID, callback){
+  var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE+requestID);
+  taskRef.update({"Taken":uid}, callback);
+}
+function completeTask(uid, requestID, callback){
+  var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE+requestID);
+  taskRef.update({"Finished":uid}, callback);
 }
 
-function updateBook(book, callback){
-  var bookRef = new Firebase(FIRE_BASE_URL+BOOKS_TABLE+book.isbn);
-  bookRef.update(book, callback);
-}
-
-function getMyBooks(uid, callback){
+function getMyTasks(uid, callback){
   var return_data = [];
-  var bookRef = new Firebase(FIRE_BASE_URL+BOOKS_TABLE);
-  bookRef.orderByChild("uid").equalTo(uid).on("value", function(snapshot) {
+  var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE);
+  taskRef.orderByChild("Taken").equalTo(uid).on("value", function(snapshot) {
     snapshot.forEach(function(data){
       return_data.push(data.val());
     });
@@ -43,10 +74,10 @@ function getMyBooks(uid, callback){
   });
 }
 
-function getBorrowedBooks(uid, callback){
+function getCompletedTasks(uid, callback){
   var return_data = [];
-  var bookRef = new Firebase(FIRE_BASE_URL+BOOKS_TABLE);
-  bookRef.orderByChild("borrow_uid").equalTo(uid).on("value", function(snapshot) {
+  var bookRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE);
+  bookRef.orderByChild("Finished").equalTo(uid).on("value", function(snapshot) {
     snapshot.forEach(function(data){
       return_data.push(data.val());
     });
@@ -72,55 +103,3 @@ getUser('facebook:1037502162960482', function(data){
     });
 });
 
-function borrow_book(uid, isbn, callback){
-  var bookRef = new Firebase(FIRE_BASE_URL+BOOKS_TABLE);
-  var singleBookRef = new Firebase(FIRE_BASE_URL+BOOKS_TABLE+"/"+isbn);
-  var userRef = new Firebase(FIRE_BASE_URL+USERS_TABLE);
-  var borrowedRef = new Firebase(FIRE_BASE_URL+USERS_TABLE+"/"+uid+'/nu_borrowed');
-  var bookOwner = null;
-
-  bookRef.child(isbn).update({
-    "status":0,
-    "borrow_uid": uid
-  });
-
-  borrowedRef.transaction(function(current_value){
-    return (parseInt(current_value) || 0) +1;
-  });
-
-  singleBookRef.once("value", function(snapshot){
-    bookOwner = snapshot.val().uid;
-    console.log(bookOwner);
-    var ownerRef = new Firebase(FIRE_BASE_URL+USERS_TABLE+"/"+bookOwner+'/nu_lent');
-    ownerRef.transaction(function(current_value){
-      return (parseInt(current_value) || 0) +1;
-    });
-    ownerRef = new Firebase(FIRE_BASE_URL+USERS_TABLE+"/"+bookOwner+'/price_lent');
-    ownerRef.transaction(function(current_value){
-      return (parseInt(current_value) || 0) + parseInt(snapshot.val().price);
-    });
-
-  borrowedRef = new Firebase(FIRE_BASE_URL+USERS_TABLE+"/"+uid+'/price_borrowed');
-    borrowedRef.transaction(function(current_value){
-      return (parseInt(current_value) || 0) + parseInt(snapshot.val().price);
-    });
-
-  });
-
-}
-/*
-function donateToLibrary(amount){
-  var data = {"medium": "balance", "payee_id": LIBRARY_ACCOUNT_ID, "amount" : amount };
-  console.log(JSON.stringify(data));
-  console.log(JSON.stringify(ACCOUNT_URL+DEBIT_ACCOUNT_ID+TRANSFER_URL+CAPITAL_ONE_QUERY_PARAM));
-    alert(JSON.stringify(ACCOUNT_URL+DEBIT_ACCOUNT_ID+TRANSFER_URL+CAPITAL_ONE_QUERY_PARAM));
-    $.ajax({
-      url: ACCOUNT_URL+DEBIT_ACCOUNT_ID+TRANSFER_URL+CAPITAL_ONE_QUERY_PARAM,
-      type: "POST",
-      data: data,
-    //http://api.reimaginebanking.com/accounts/56241a14de4bf40b17112a77/transfers?key=2ec3d395b0e81344514ca1ecbae6edcb
-      success: function(results){
-         alert(results);
-      }
-    });
-}*/
