@@ -1,10 +1,12 @@
 ref.onAuth(function(authData) {
 	console.log("outside if")
-  if (authData && isNewUser) {
+	console.log(authData);
+	console.log("in");
+  if (authData) {
   	console.log("inside if")
     // save the user's profile into the database so we can list users,
     // use them in Security and Firebase Rules, and show profiles
-    if (authData.facebook.id){
+    if (authData.facebook){
     	  ref.child("users").child(authData.facebook.id).set({
 		      fname: getFName(authData),
 		      lname: getLName(authData),
@@ -16,14 +18,15 @@ ref.onAuth(function(authData) {
       //lname: getLName(authData),
       //id: getId(authData)
     //});
-		if (authData.twitter.id){
+		if (authData.twitter){
+			console.log(authData.twitter);
 			ref.child("users").child(authData.twitter.id).set({
 					/*username: authData.twitter.username,
 					displayname: authData.twitter.displayName,
 					id: twitter.id*/
-					fname: getTwitterFName(authData),
-		      		lname: getTwitterLName(authData),
-		      		id: getTwitterId(authData)
+					fname: authData.twitter.displayName,
+		      		lname: authData.twitter.displayName,
+		      		id: authData.twitter.id
 				});
 		}
     //ref.child("users").child(authData.twitter.id).set({
@@ -46,18 +49,6 @@ function getLName(authData){
 	return authData.facebook.cachedUserProfile.last_name;
 }
 
-
-function getTwitterId(authData){
-	return authData.twitter.id;
-}
-
-function getTwitterFName(authData){
-	return authData.twitter.cachedUserProfile.first_name;
-}
-
-function getTwitterLName(authData){
-	return authData.twitter.cachedUserProfile.last_name;
-}
 
 function loginFB(){
 
@@ -92,6 +83,7 @@ function logout(){
 
 function checkSession(){
 	authData = ref.getAuth();
+	console.log("Entertin");
 	console.log(authData);
 	if(authData){
 		window.location.href = "pages/index.html";

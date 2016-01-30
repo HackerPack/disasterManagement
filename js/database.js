@@ -1,21 +1,38 @@
-function searchTask(term,keywords, callback){
-  var taskRef = new Firebase(FIRE_BASE_URL+tasks_TABLE);
-  taskRef.orderByChild("Taken").equalToon("value", function(snapshot) {
+function searchTasks()
+{
+  var keyword = document.getElementById("searchKeywords").value;
+  searchTask("ChennaiFloods", keyword, function(data){});
+
+
+}
+function searchTask(term,keyword, callback){
+  var keywords = keyword.split(" ");
+  var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE);
+  taskRef.orderByChild("Taken").equalTo("0").on("value", function(snapshot) {
 
      var searchResult = [];
      snapshot.forEach(function(childSnapshot) {
+
         var temp = JSON.stringify(childSnapshot.val());
+        console.log(temp);
         if(keywords){
-          for(var i=0;i<keywords.length;i++)
+          flag=0;
+          for(i=0;i<keywords.length;i++)
           {
             var n = temp.search(keywords[i]);
             if(n>-1){
-            searchResult.push(childSnapshot.val());
+              flag=0;
+            }
+            else
+            {
+              console.log("Not matched");
+              flag=1;
+              break;
+            }
           }
-          temp = searchResult;
-         }
-       }
-        
+          if(flag==0)
+            searchResult.push(temp);
+        }
       });
      console.log(searchResult);
 
@@ -23,7 +40,6 @@ function searchTask(term,keywords, callback){
   });
 }
 function allTasks(disaster, callback){
-  alert("Trying to search task");
   var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE);
   taskRef.orderByChild("Taken").equalTo("0").on("value", function(snapshot) {
 

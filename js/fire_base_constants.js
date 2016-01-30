@@ -1,11 +1,11 @@
 var FIRE_BASE_URL = "https://hoyadisastermanagement.firebaseio.com/";
 var TASKS_TABLE = "tasks/";
-/*var USERS_TABLE = "users/";*/
+var USERS_TABLE = "users/";
 var ref = new Firebase(FIRE_BASE_URL);
 var isNewUser = true;
 var globalTaskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE);
-/*var globalUserRef = new Firebase(FIRE_BASE_URL+USERS_TABLE);
-var LIBRARY_ACCOUNT_ID = "56241a14de4bf40b17112a75";
+var globalUserRef = new Firebase(FIRE_BASE_URL+USERS_TABLE);
+/*var LIBRARY_ACCOUNT_ID = "56241a14de4bf40b17112a75";
 var DEBIT_ACCOUNT_ID = "56241a14de4bf40b17112a77";
 var ACCOUNT_URL = "http://api.reimaginebanking.com/accounts/"; 
 var TRANSFER_URL = "/transfers/"; 
