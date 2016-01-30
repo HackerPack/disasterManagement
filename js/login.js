@@ -1,5 +1,7 @@
 ref.onAuth(function(authData) {
+	console.log("outside if")
   if (authData && isNewUser) {
+  	console.log("inside if")
     // save the user's profile into the database so we can list users,
     // use them in Security and Firebase Rules, and show profiles
     if (authData.facebook.id){
