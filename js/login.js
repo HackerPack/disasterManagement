@@ -1,4 +1,5 @@
 ref.onAuth(function(authData) {
+	alert("check session");
   if (authData && isNewUser) {
     // save the user's profile into the database so we can list users,
     // use them in Security and Firebase Rules, and show profiles
@@ -55,6 +56,7 @@ function logout(){
 
 function checkSession(){
 	authData = ref.getAuth();
+	alert("CheckSession");
 	console.log(authData);
 	if(authData){
 		window.location.href = "pages/index.html";
