@@ -29,6 +29,10 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+   <script src="../js/fire_base_constants.js"></script>
+    <script src="../js/database.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -507,7 +511,16 @@
                                 </table>
                             </div>
             <div class="row">
+
                 <div class="col-lg-8">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" placeholder="Search" id="searchKeywords"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button" onclick="searchTasks()">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Tasks Dashboard
@@ -983,12 +996,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
-   <script src="../js/fire_base_constants.js"></script>
-    <script src="../js/database.js"></script>
-    <script></script>
     <script>
      allTasks("ChennaiFloods",function(data){});
+     
    </script>
     <script>
      getTwitterWidget("ChennaiFloods",function(data){
