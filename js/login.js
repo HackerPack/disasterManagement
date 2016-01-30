@@ -22,7 +22,7 @@ function getLName(authData){
 	return authData.facebook.cachedUserProfile.last_name;
 }
 
-function login(){
+function loginFB(){
 
 	ref.authWithOAuthPopup("facebook", function(error, authData) {
   		if (error) {
@@ -35,7 +35,19 @@ function login(){
   		remember: "sessionOnly"
 	});
 }
+function loginTwitter(){
 
+	ref.authWithOAuthPopup("twitter", function(error, authData) {
+  		if (error) {
+   			console.log("Login Failed!", error);
+  		} else {
+  			console.log("Authenticated successfully with payload:", authData);
+  			checkSession();
+  		}
+	}, {
+  		remember: "sessionOnly"
+	});
+}
 function logout(){
 	ref.unauth();
 	window.location.href = "index.html";
