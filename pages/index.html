@@ -475,11 +475,42 @@
                 </div>
             </div>
             <!-- /.row -->
+            <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Disaster</th>
+                                            <th>Task Type</th>
+                                            <th>Original Tweet</th>
+                                            <th>Sent From Location</th>
+                                            <th>Time of Tweet</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id = row12>
+                                        <tr class="odd gradeX">
+                                            <td>Trident</td>
+                                            <td>Internet Explorer 4.0</td>
+                                            <td>Win 95+</td>
+                                            <td class="center">4</td>
+                                            <td class="center">X</td>
+                                        </tr>
+                                        <tr class="even gradeC">
+                                            <td>Trident</td>
+                                            <td>Internet Explorer 5.0</td>
+                                            <td>Win 95+</td>
+                                            <td class="center">5</td>
+                                            <td class="center">C</td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Tasks Dashboard
                             <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -972,6 +1003,27 @@
      });
 
    </script>
+
+   <script>
+   $(document).ready(function() { 
+        allTasks('ChennaiFloods',function(array){
+            console.log("Got list");
+            for(var i =0;i<(array.length);i++)
+            {
+                console.log(array[i]);
+                console.log(array[i].Disaster);
+                /*var Disaster = array[i].Disaster;
+                var eventID = array[i].EventID;
+                var eventID2 = array[i].EventID;
+                var source_lat = array[i].Source.Latitude;
+                get_name_from_uid(uid, function(uname){
+                    $("#row12").append('<tr i align=center><td  class=user-name >'+uname+'</td><td>'+source_lat+'</td><td>'+source_long+'</td><td>'+dest_lat+'</td><td>'+dest_long+'</td><td>'+ArrivalTime+'</td><td> <button type="button" onclick=inviteFriend();>Invite</button></td></tr>');
+                });*/
+            }
+        });
+    });
+     
+    </script>
 </body>
 
 </html>
