@@ -486,13 +486,13 @@
                                         <tr>
                                             <th>Disaster</th>
                                             <th>Task Type</th>
-                                            <th>Original Tweet</th>
                                             <th>Sent From Location</th>
+                                            <th>Original Tweet</th>
                                             <th>Time of Tweet</th>
                                         </tr>
                                     </thead>
                                     <tbody id = row12>
-                                        <tr class="odd gradeX">
+                                        <!-- <tr class="odd gradeX">
                                             <td>Trident</td>
                                             <td>Internet Explorer 4.0</td>
                                             <td>Win 95+</td>
@@ -505,7 +505,7 @@
                                             <td>Win 95+</td>
                                             <td class="center">5</td>
                                             <td class="center">C</td>
-                                        </tr>
+                                        </tr> -->
                                         
                                     </tbody>
                                 </table>
@@ -1020,15 +1020,16 @@
             console.log("Got list");
             for(var i =0;i<(array.length);i++)
             {
-                console.log(array[i]);
-                console.log(array[i].Disaster);
-                /*var Disaster = array[i].Disaster;
-                var eventID = array[i].EventID;
-                var eventID2 = array[i].EventID;
-                var source_lat = array[i].Source.Latitude;
-                get_name_from_uid(uid, function(uname){
-                    $("#row12").append('<tr i align=center><td  class=user-name >'+uname+'</td><td>'+source_lat+'</td><td>'+source_long+'</td><td>'+dest_lat+'</td><td>'+dest_long+'</td><td>'+ArrivalTime+'</td><td> <button type="button" onclick=inviteFriend();>Invite</button></td></tr>');
-                });*/
+                //console.log(array[i]);
+                /*<tr class="odd gradeX">
+                <td>console.log(array[i].Disaster)</td>
+                <td>console.log(array[i].TaskType)</td>
+                <td>console.log(array[i].SentFromLocation)</td>
+                <td>console.log(array[i].OriginalTweet)</td>
+                <td>console.log(array[i].TimeOfTweet)</td>
+                </tr>*/
+                $("#row12").append('<tr i align=center><td  class=user-name >'+array[i].Disaster+'</td><td>'+array[i].TaskType+'</td><td>'+array[i].SentFromLocation+'</td><td>'+array[i].OriginalTweet+'</td><td>'+array[i].TimeOfTweet+'</td></tr>');
+                });
             }
         });
     });
