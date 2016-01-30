@@ -1,5 +1,6 @@
 var FIRE_BASE_URL = "https://hoyadisastermanagement.firebaseio.com/";
 var TASKS_TABLE = "tasks/";
+var HASHTAGS_TABLE = "twitterhashtags/";
 var USERS_TABLE = "users/";
 var ref = new Firebase(FIRE_BASE_URL);
 var isNewUser = true;

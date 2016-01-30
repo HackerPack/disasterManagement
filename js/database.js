@@ -113,9 +113,59 @@ userRef.once('value', function(data) {
 }
 
 
-getUser('facebook:1037502162960482', function(data){
+getUser('facebook:10153182851271621', function(data){
     data.forEach(function(innerData){
         //console.log(innerData.fname);
     });
 });
 
+function getTwitterWidget(hashtag, callback){
+  //alert("Fetching widget details");
+  var twitterRef = new Firebase(FIRE_BASE_URL+HASHTAGS_TABLE+hashtag);
+  var searchResult = [];
+
+  //twitterRef.orderByKey().equalTo(hashtag).on("value", function(snapshot) {
+    twitterRef.once('value', function(data){
+      //console.log(data.val());
+      searchResult.push(data.val());
+     //callback(searchResult);
+     /*snapshot.forEach(function(childSnapshot) {
+        var temp = JSON.stringify(childSnapshot.val());
+        if(hashtag){
+          var n = temp.search(hashtag);
+          if(n>-1){
+            searchResult.push(childSnapshot.val());
+          }
+        }
+        else{
+         searchResult.push(childSnapshot.val());
+        }
+      });*/
+    $.each(data.val(), function(key, value){
+      //console.log(value);
+    })
+     //console.log(searchResult);
+          //alert(searchResult);
+     callback(searchResult);
+     return searchResult
+  });  
+}
+
+function getDisasters(hashtag, callback){
+  var disRef = new Firebase(FIRE_BASE_URL+HASHTAGS_TABLE);
+  disRef.orderByChild("hashtag").on("value", function(snapshot){
+    var searchResult = [];
+    snapshot.forEach(function(childSnapshot){
+      var temp = JSON.stringify(childSnapshot.val());
+      if (hashtag){
+        var n = temp.search(hashtag);
+        if (n>-1){
+          searchResult.push(childSnapshot.val());
+        }
+      } else {
+        searchResult.push(childSnapshot.val());
+      }
+    });
+    callback(searchResult);
+  });
+}
