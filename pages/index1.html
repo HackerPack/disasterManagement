@@ -35,7 +35,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    
 </head>
 
 <body>
@@ -514,8 +514,20 @@
                                         </tr>
                                     </thead>
                                     <tbody id = "row12">
-                                       
-                                        
+                                    </tbody>
+                                </table>
+
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Disaster</th>
+                                            <th>Task Type</th>
+                                            <th>Sent From Location</th>
+                                            <th>Original Tweet</th>
+                                            <th>Time of Tweet</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id = "row13">
                                     </tbody>
                                 </table>
                             </div>
@@ -992,20 +1004,26 @@
             for(var i =0;i<(array.length);i++)
             {
                 console.log(array[i]);
-                //console.log(array[i]);
-                /*<tr class="odd gradeX">
-                <td>console.log(array[i].Disaster)</td>
-                <td>console.log(array[i].TaskType)</td>
-                <td>console.log(array[i].SentFromLocation)</td>
-                <td>console.log(array[i].OriginalTweet)</td>
-                <td>console.log(array[i].TimeOfTweet)</td>
-                </tr>*/
                 $("#row12").append('<tr i align=center><td  class=user-name >'+array[i].Disaster+'</td><td>'+array[i].TaskType+'</td><td>'+array[i].SentFromLocation+'</td><td>'+array[i].OriginalTweet+'</td><td>'+array[i].TimeOfTweet+'</td></tr>')
                 };
             
         });
     });
 
+    $(document).ready(function(){
+            getId(function(uid){
+             getMyTasks(uid, function(data){
+                console.log("Printing data object");
+                console.log(data);
+                console.log("Got my Tasks");
+                for(var i =0;i<(data.length);i++)
+                {
+                    console.log(array[i]);
+                    $("#row13").append('<tr i align=center><td  class=user-name >'+array[i].Disaster+'</td><td>'+array[i].TaskType+'</td><td>'+array[i].SentFromLocation+'</td><td>'+array[i].OriginalTweet+'</td><td>'+array[i].TimeOfTweet+'</td></tr>')
+                    };
+            });
+             });
+        });
    </script>
 </body>
 
