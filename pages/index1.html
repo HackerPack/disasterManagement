@@ -1038,8 +1038,16 @@
      });
     function octaketask(){
         console.log("Inside octaketask");
-        getId(function(uid){
+        /*getId(function(uid){
             console.log("UID: "+uid);
+            console.log("CurrentID: "+currentid);
+        });*/
+        var uid = getId(function(data){});
+        takeTask(uid, currentid, function(){
+            console.log("takeTask from octaketask");
+            var address = "index1.html?" +disaster;
+            console.log(address);
+            window.location.href = address;
         });
     }
    $(document).ready(function() { 
@@ -1069,6 +1077,8 @@
             $('#row12').children('tr').click(function(){
                 console.log(this);
                 $("#myModal").modal('show');
+                currentid = $(this).find('.taskId').text();
+                console.log("Current ID: "+currentid);
 
             });
         });
