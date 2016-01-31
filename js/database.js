@@ -97,6 +97,7 @@ function getMyTasks(uid, callback){
   var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE);
   taskRef.orderByChild("Taken").equalTo(uid).on("value", function(snapshot) {
     snapshot.forEach(function(data){
+      if(data.val().Finished == "0")
       return_data.push(data);
     });
     console.log(return_data);
