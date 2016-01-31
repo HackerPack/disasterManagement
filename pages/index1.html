@@ -502,6 +502,23 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                        <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Disaster</th>
+                                            <th>Task Type</th>
+                                            <th>Sent From Location</th>
+                                            <th>Original Tweet</th>
+                                            <th>Time of Tweet</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id = "row12">
+                                       
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
                             <div id="morris-area-chart"></div>
                         </div>
                         <!-- /.panel-body -->
@@ -834,6 +851,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                        
                             <ul class="chat">
                                 <li class="left clearfix">
                                     <span class="chat-img pull-left">
@@ -957,9 +975,6 @@
     <script src="../js/database.js"></script>
     <script></script>
     <script>
-     allTasks("ChennaiFloods",function(data){});
-   </script>
-    <script>
      getTwitterWidget("ChennaiFloods",function(data){
         console.log(data[0]["hashtag"]);
         console.log(data[0]["twitterwidget"]);
@@ -971,6 +986,25 @@
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
      });
      var disaster = window.location.search.substring(1);
+   $(document).ready(function() { 
+        allTasks(disaster,function(array){
+            console.log("Got list");
+            for(var i =0;i<(array.length);i++)
+            {
+                console.log(array[i]);
+                //console.log(array[i]);
+                /*<tr class="odd gradeX">
+                <td>console.log(array[i].Disaster)</td>
+                <td>console.log(array[i].TaskType)</td>
+                <td>console.log(array[i].SentFromLocation)</td>
+                <td>console.log(array[i].OriginalTweet)</td>
+                <td>console.log(array[i].TimeOfTweet)</td>
+                </tr>*/
+                $("#row12").append('<tr i align=center><td  class=user-name >'+array[i].Disaster+'</td><td>'+array[i].TaskType+'</td><td>'+array[i].SentFromLocation+'</td><td>'+array[i].OriginalTweet+'</td><td>'+array[i].TimeOfTweet+'</td></tr>')
+                };
+            
+        });
+    });
 
    </script>
 </body>
