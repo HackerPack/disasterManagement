@@ -31,7 +31,7 @@ def analyse(tweet):
     if '#' in OriginalTweet:
         start_index = OriginalTweet.index('#') + 1
         Disaster = OriginalTweet[start_index:OriginalTweet.index(' ',start_index)]
-    elif 'available' in OriginalTweet:
+    if 'available' in OriginalTweet:
         TaskType = 'GOODS'
     elif 'need' in OriginalTweet:
         TaskType = 'GOODS'     

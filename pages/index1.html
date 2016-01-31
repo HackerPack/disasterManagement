@@ -11,6 +11,8 @@
 
     <title>WolfPack Rescue</title>
 
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -35,6 +37,117 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: #202020;
+}
+
+p {
+  display: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  overflow: hidden;
+}
+table td, table th {
+  border-top: 1px solid #ECF0F1;
+  padding: 10px;
+}
+table td {
+  border-left: 1px solid #ECF0F1;
+  border-right: 1px solid #ECF0F1;
+}
+table th {
+  background-color: #4ECDC4;
+}
+table tr:nth-of-type(even) td {
+  background-color: #d9f4f2;
+}
+table .total th {
+  background-color: white;
+}
+table .total td {
+  text-align: right;
+  font-weight: 700;
+}
+
+.mobile-header {
+  display: none;
+}
+
+@media only screen and (max-width: 760px) {
+  p {
+    display: block;
+    font-weight: bold;
+  }
+
+  table tr td:not(:first-child), table tr th:not(:first-child), table tr td:not(.total-val) {
+    display: none;
+  }
+  table tr:nth-of-type(even) td:first-child {
+    background-color: #d9f4f2;
+  }
+  table tr:nth-of-type(odd) td:first-child {
+    background-color: white;
+  }
+  table tr:nth-of-type(even) td:not(:first-child) {
+    background-color: white;
+  }
+  table tr th:first-child {
+    width: 100%;
+    display: block;
+  }
+  table tr th:not(:first-child) {
+    width: 40%;
+    transition: transform 0.4s ease-out;
+    transform: translateY(-9999px);
+    position: relative;
+    z-index: -1;
+  }
+  table tr td:not(:first-child) {
+    transition: transform 0.4s ease-out;
+    transform: translateY(-9999px);
+    width: 60%;
+    position: relative;
+    z-index: -1;
+  }
+  table tr td:first-child {
+    display: block;
+    cursor: pointer;
+  }
+  table tr.total th {
+    width: 25%;
+    display: inline-block;
+  }
+  table tr td.total-val {
+    display: inline-block;
+    transform: translateY(0);
+    width: 75%;
+  }
+}
+@media only screen and (max-width: 300px) {
+  table tr th:not(:first-child) {
+    width: 50%;
+    font-size: 14px;
+  }
+  table tr td:not(:first-child) {
+    width: 50%;
+    font-size: 14px;
+  }
+}
+
+    </style>
+
     
 </head>
 
@@ -280,7 +393,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw" ></i> </a>
                         </li>
                         <li>
                             <a href="disaster.html"><i class="fa fa-dashboard fa-fw"></i> You can help!</a>
@@ -296,7 +409,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header"><div id="disasterName">Dashboard</div></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -416,11 +529,10 @@
                                  </span>
                             </div>
                             <div class="dataTable_wrapper">
-                                <p></p>
-                                <div id="unassigned">Unassigned Tasks related to #</div>
+                            <div>Tasks not assigned</div>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
-                                        <tr>
+                                        <tr class ="table-headers">
                                             <!--<th>Choose</th> -->
                                             
                                             <th>Disaster</th>
@@ -434,10 +546,10 @@
                                     <tbody id = "row12">
                                     </tbody>
                                 </table>
-                                <div>My Pending Tasks</div>
+                                    <div>Tasks pending</div>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
-                                        <tr>
+                                        <tr class = "table-headers">
                                             
                                             <th>Disaster</th>
                                             <th>Task Type</th>
@@ -450,10 +562,10 @@
                                     <tbody id = "row13">
                                     </tbody>
                                 </table>
-                                <div>My Completed Tasks</div>
+                                    <div>Tasks Completed</div>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
-                                        <tr>
+                                        <tr class = "table-headers">
                                             
                                             <th>Disaster</th>
                                             <th>Task Type</th>
@@ -573,24 +685,103 @@
             window.location.href = address;
         });
     }
-   $(document).ready(function() { 
-        allTasks(disaster,function(array){
+   function searchTasks()
+{
+  var keyword = document.getElementById("searchKeywords").value;
+  searchTask(disaster, keyword, function(array){
             console.log("Got list");
+<<<<<<< HEAD
             $('#unassigned').append(disaster);
             $("#row12").append('<form>')
+=======
+>>>>>>> c34c7095cc1341ceb93e2b1048b82d1acd9be4dd
             for(var i =0;i<(array.length);i++)
             {
+                $("#row12").empty();
                 console.log(array[i].key());
                 var currentTime = new Date(Date.now());
                     var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
-                    
                     if(hours > 24){
                         var Overdue = "Yes"
 
                     }else{
                         var Overdue = "No"
                     }
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
+                };
+            
+        });
+
+
+}
+
+   function searchTasks()
+{
+  var keyword = document.getElementById("searchKeywords").value;
+  searchTask(disaster, keyword, function(array){
+            console.log("Got list");
+
+            $("#row12").empty();
+            $("#row12").append('<form>')
+            for(var i =0;i<(array.length);i++)
+            {
+                console.log(array[i].key());
+                var currentTime = new Date(Date.now());
+                var tweetTime = new Date(array[i].val().TimeOfTweet);
+                    var hours = Math.abs(currentTime -tweetTime ) / 3600000;
+                    console.log("hours");
+                    console.log(hours);
+                    
+                    if(hours > 24){
+                        var Overdue = "Yes"
+                        console.log(" I am in if");
+
+                    }else{
+                        console.log(" I am in else");
+                        var Overdue = "No"
+                    }
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>');
+                };
+                $('#row12').children('tr').click(function(){
+                console.log(this);
+                $("#myModal").modal('show');
+                currentid = $(this).find('.taskId').text();
+                console.log("Current ID: "+currentid);
+
+            });
+            
+        });
+
+
+}
+getMyTasks("315182856", function(data){
+
+    console.log(data);
+});
+
+    $(document).ready(function(){
+        $("#disasterName").html('#'+disaster);
+        var pendingTasks = 0;
+        var completedTasks = 0;
+        var overdueTasks = 0;
+        allTasks(disaster,function(array){
+            console.log("Got list");
+            $("#row12").append('<form>')
+            for(var i =0;i<(array.length);i++)
+            {
+                console.log(array[i].key());
+                var currentTime = new Date(Date.now());
+                var tweetTime = new Date(array[i].val().TimeOfTweet);
+                var hours = Math.abs(currentTime -tweetTime ) / 3600000;
+                    
+                    if(hours > 24){
+                        var Overdue = "Yes";
+                        overdueTasks++;
+
+                    }else{
+                        var Overdue = "No"
+                    }
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
             };
             $("#row12").append('</form>');
 
@@ -612,38 +803,6 @@
         $("#sidebar").append('<a class="twitter-timeline"  href='+data[0]["link"]+' data-widget-id="'+data[0]["twitterwidget"]+'">#'+data[0]["hashtag"]+' Tweets</a>');
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
      });
-    });
-   function searchTasks()
-{
-  var keyword = document.getElementById("searchKeywords").value;
-  searchTask(disaster, keyword, function(array){
-            console.log("Got list");
-            for(var i =0;i<(array.length);i++)
-            {
-                $("#row12").empty();
-                console.log(array[i].key());
-                var currentTime = new Date(Date.now());
-                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
-                    
-                    if(hours > 24){
-                        var Overdue = "Yes"
-
-                    }else{
-                        var Overdue = "No"
-                    }
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
-                };
-            
-        });
-
-
-}
-getMyTasks("315182856", function(data){
-
-    console.log(data);
-});
-
-    $(document).ready(function(){
         console.log('Entering');
             uid = getId(function(array){});
                 console.log("This val" +uid);
@@ -653,18 +812,45 @@ getMyTasks("315182856", function(data){
                 console.log("Got my Tasks");
                 for(var i =0;i<(array.length);i++)
                 {
-                    console.log(array[i]);
+                    pendingTasks++;
+                    if(array[i].val().Overdue == "No")
+                    {
                     var currentTime = new Date(Date.now());
-                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                    console.log(currentTime.getTime());
+                    var timeTweet = array[i].val().TimeOfTweet;
+                    var dateStringISO = timeTweet.replace(/([+\-]\d\d)(\d\d)$/, "$1:$2");
+                    var timestamp = new Date(dateStringISO).getTime();
+                    var hours = Math.abs(currentTime.getTime() - timestamp) / 3600000;
+                    console.log(hours);
                     
                     if(hours > 24){
-                        var Overdue = "Yes"
+                        var Overdue = "Yes";
+                        overdueTasks++;
+                        var userRef = new Firebase(FIRE_BASE_URL+USERS_TABLE+uid);
+                        userRef.once('value', function(data) {
+                                console.log("Takin away task");
+                            var trustLevel = data.val().trustLevel;
+                            trustLevel--; 
+
+                              $("#trustLevel").html(trustLevel);
+                            userRef.update({"trustLevel":trustLevel},function(data){});
+                            });
+                        overdueTrue(array[i].key(),function(data){});
+
 
                     }else{
                         var Overdue = "No"
                     }
-                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
-                };
+                }
+                    else
+                    overdueTasks++;
+                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>');
+                }
+                console.log("Numberof pending");
+                console.log(pendingTasks);
+        $("#pendingTasks").html(pendingTasks);
+        $("#overdueTasks").html(overdueTasks);
+
                 $('#row13').children('tr').click(function(){
                     console.log(this);
                     $("#progressModal").modal('show');
@@ -673,13 +859,11 @@ getMyTasks("315182856", function(data){
                 });
             });
 
-        });
-
-    //to display completed tasks by user
-    $(document).ready(function(){
-        console.log('Entering');
             uid = getId(function(array){});
-                console.log("This val" +uid);
+            getUser(uid,function(data){
+                trustLevel = data[0].trustLevel;
+                $("#trustLevel").html(trustLevel);
+            });
              getCompletedTasks(uid, function(array){
                 console.log("Printing data object");
                 console.log(array);
@@ -687,11 +871,20 @@ getMyTasks("315182856", function(data){
                 for(var i =0;i<(array.length);i++)
                 {
                     console.log(array[i]);
+                    completedTasks++;
 
+                    $("#row14").append('<tr i align=center><td class=taskId style="display:none">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>');
+
+<<<<<<< HEAD
                     $("#row14").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>')
+=======
+                }
+                $("#completedTasks").html(completedTasks);
+>>>>>>> c34c7095cc1341ceb93e2b1048b82d1acd9be4dd
 
-                    };
             });
+             console.log("Number of pending");
+
              
         });
    </script>
