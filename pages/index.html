@@ -488,7 +488,16 @@
             {
                 $("#row12").empty();
                 console.log(array[i].key());
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
+                var currentTime = new Date(Date.now());
+                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                    
+                    if(hours > 24){
+                        var Overdue = "Yes"
+
+                    }else{
+                        var Overdue = "No"
+                    }
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
                 };
         });
 }
@@ -504,8 +513,17 @@
                 for(var i =0;i<(array.length);i++)
                 {
                     pendingTasks++;
+                    var currentTime = new Date(Date.now());
+                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                    
+                    if(hours > 24){
+                        var Overdue = "Yes"
+
+                    }else{
+                        var Overdue = "No"
+                    }
                     console.log(array[i]);
-                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>')
+                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
                 };
                 $('#row13').children('tr').click(function(){
                     console.log(this);
@@ -525,7 +543,8 @@
                 {
                     ++completedTasks;
                     console.log(array[i]);
-                    $("#row14").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
+                    
+                    $("#row14").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>')
                     };
             });
              

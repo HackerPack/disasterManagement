@@ -591,7 +591,16 @@
             for(var i =0;i<(array.length);i++)
             {
                 console.log(array[i].key());
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
+                var currentTime = new Date(Date.now());
+                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                    
+                    if(hours > 24){
+                        var Overdue = "Yes"
+
+                    }else{
+                        var Overdue = "No"
+                    }
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
             };
             $("#row12").append('</form>');
 
@@ -623,15 +632,16 @@
             {
                 $("#row12").empty();
                 console.log(array[i].key());
-                //console.log(array[i]);
-                /*<tr class="odd gradeX">
-                <td>console.log(array[i].Disaster)</td>
-                <td>console.log(array[i].TaskType)</td>
-                <td>console.log(array[i].SentFromLocation)</td>
-                <td>console.log(array[i].OriginalTweet)</td>
-                <td>console.log(array[i].TimeOfTweet)</td>
-                </tr>*/
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
+                var currentTime = new Date(Date.now());
+                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                    
+                    if(hours > 24){
+                        var Overdue = "Yes"
+
+                    }else{
+                        var Overdue = "No"
+                    }
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
                 };
             
         });
@@ -654,7 +664,16 @@ getMyTasks("315182856", function(data){
                 for(var i =0;i<(array.length);i++)
                 {
                     console.log(array[i]);
-                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
+                    var currentTime = new Date(Date.now());
+                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                    
+                    if(hours > 24){
+                        var Overdue = "Yes"
+
+                    }else{
+                        var Overdue = "No"
+                    }
+                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
                 };
                 $('#row13').children('tr').click(function(){
                     console.log(this);
@@ -679,7 +698,7 @@ getMyTasks("315182856", function(data){
                 {
                     console.log(array[i]);
 
-                    $("#row14").append('<tr i align=center><td class=taskId>'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
+                    $("#row14").append('<tr i align=center><td class=taskId>'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>')
 
                     };
             });
