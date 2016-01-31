@@ -1,10 +1,4 @@
-function searchTasks()
-{
-  var keyword = document.getElementById("searchKeywords").value;
-  searchTask("ChennaiFloods", keyword, function(data){});
 
-
-}
 function searchTask(term,keyword, callback){
   var keywords = keyword.split(" ");
   var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE);
@@ -31,7 +25,7 @@ function searchTask(term,keyword, callback){
             }
           }
           if(flag==0)
-            searchResult.push(temp);
+            searchResult.push(childSnapshot);
         }
       });
      console.log(searchResult);
@@ -49,11 +43,12 @@ function allTasks(disaster, callback){
         if(disaster){
           var n = temp.search(disaster);
           if(n>-1){
-            searchResult.push(childSnapshot.val());
+            searchResult.push(childSnapshot);
+
           }
         }
         else{
-         searchResult.push(childSnapshot.val());
+         searchResult.push(childSnapshot);
         }
       });
      console.log(searchResult);
