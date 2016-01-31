@@ -485,14 +485,7 @@
                     <!-- /.panel -->
                     
                     <!-- /.panel -->
-                    <div class="chat-panel panel panel-default">
-                        
-                        <!-- /.panel-body -->
-                        <div class="panel-footer">
-                            
-                        </div>
-                        <!-- /.panel-footer -->
-                    </div>
+
                     <!-- /.panel .chat-panel -->
                 </div>
                 <!-- /.col-lg-4 -->
@@ -620,7 +613,8 @@
             {
                 console.log(array[i].key());
                 var currentTime = new Date(Date.now());
-                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                var tweetTime = new Date(array[i].val().TimeOfTweet);
+                var hours = Math.abs(currentTime -tweetTime ) / 3600000;
                     
                     if(hours > 24){
                         var Overdue = "Yes";
@@ -651,6 +645,46 @@
         $("#sidebar").append('<a class="twitter-timeline"  href='+data[0]["link"]+' data-widget-id="'+data[0]["twitterwidget"]+'">#'+data[0]["hashtag"]+' Tweets</a>');
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
      });
+<<<<<<< HEAD
+=======
+    });
+   function searchTasks()
+{
+  var keyword = document.getElementById("searchKeywords").value;
+  searchTask(disaster, keyword, function(array){
+            console.log("Got list");
+            for(var i =0;i<(array.length);i++)
+            {
+                $("#row12").empty();
+                console.log(array[i].key());
+                var currentTime = new Date(Date.now());
+                var tweetTime = new Date(array[i].val().TimeOfTweet);
+                    var hours = Math.abs(currentTime -tweetTime ) / 3600000;
+                    console.log("hours");
+                    console.log(hours);
+                    
+                    if(hours > 24){
+                        var Overdue = "Yes"
+                        console.log(" I am in if");
+
+                    }else{
+                        console.log(" I am in else");
+                        var Overdue = "No"
+                    }
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
+                };
+            
+        });
+
+
+}
+getMyTasks("315182856", function(data){
+
+    console.log(data);
+});
+
+    $(document).ready(function(){
+        console.log('Entering');
             uid = getId(function(array){});
                 console.log("This val" +uid);
              getMyTasks(uid, function(array){
