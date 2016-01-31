@@ -376,8 +376,6 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" onclick="octaketask()">Agree</button>
-                  </div>
-                  <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   </div>
                 </div>
@@ -398,11 +396,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" onclick="occompletetask()">Completed</button>
-                  </div>
-                  <div class="modal-footer">
                     <button type="button" class="btn btn-default" onclick="ocuntaketask()">Withdraw from task</button>
-                  </div>
-                  <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   </div>
                 </div>
@@ -422,6 +416,8 @@
                                  </span>
                             </div>
                             <div class="dataTable_wrapper">
+                                <p></p>
+                                <div id="unassigned">Unassigned Tasks related to #</div>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
@@ -438,7 +434,7 @@
                                     <tbody id = "row12">
                                     </tbody>
                                 </table>
-
+                                <div>My Pending Tasks</div>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
@@ -454,7 +450,7 @@
                                     <tbody id = "row13">
                                     </tbody>
                                 </table>
-
+                                <div>My Completed Tasks</div>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
@@ -580,6 +576,7 @@
    $(document).ready(function() { 
         allTasks(disaster,function(array){
             console.log("Got list");
+            $('#unassigned').append(disaster);
             $("#row12").append('<form>')
             for(var i =0;i<(array.length);i++)
             {
@@ -691,7 +688,7 @@ getMyTasks("315182856", function(data){
                 {
                     console.log(array[i]);
 
-                    $("#row14").append('<tr i align=center><td class=taskId>'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>')
+                    $("#row14").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>')
 
                     };
             });
