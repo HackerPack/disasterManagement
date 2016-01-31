@@ -546,6 +546,7 @@
                                             <th>Sent From Location</th>
                                             <th>Original Tweet</th>
                                             <th>Time of Tweet</th>
+                                            <th>Task Overdue</th>
                                         </tr>
                                     </thead>
                                     <tbody id = "row12">
@@ -561,6 +562,7 @@
                                             <th>Sent From Location</th>
                                             <th>Original Tweet</th>
                                             <th>Time of Tweet</th>
+                                            <th>Task Overdue</th>
                                         </tr>
                                     </thead>
                                     <tbody id = "row13">
@@ -576,6 +578,7 @@
                                             <th>Sent From Location</th>
                                             <th>Original Tweet</th>
                                             <th>Time of Tweet</th>
+                                            <th>Task Overdue</th>
                                         </tr>
                                     </thead>
                                     <tbody id = "row14">
@@ -924,7 +927,7 @@
             for(var i =0;i<(array.length);i++)
             {
                 console.log(array[i].key());
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>')
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
             };
             $("#row12").append('</form>');
 
@@ -954,7 +957,7 @@
                 <td>console.log(array[i].OriginalTweet)</td>
                 <td>console.log(array[i].TimeOfTweet)</td>
                 </tr>*/
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>')
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
                 };
             
         });
@@ -977,7 +980,7 @@ getMyTasks("315182856", function(data){
                 for(var i =0;i<(array.length);i++)
                 {
                     console.log(array[i]);
-                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>')
+                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
                 };
                 $('#row13').children('tr').click(function(){
                     console.log(this);
@@ -1001,7 +1004,7 @@ getMyTasks("315182856", function(data){
                 for(var i =0;i<(array.length);i++)
                 {
                     console.log(array[i]);
-                    $("#row14").append('<tr i align=center><td class=taskId>'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>')
+                    $("#row14").append('<tr i align=center><td class=taskId>'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
                     };
             });
              
