@@ -95,6 +95,7 @@ function getMyTasks(uid, callback){
     snapshot.forEach(function(data){
       return_data.push(data);
     });
+    console.log(return_data);
     callback(return_data);
   });
 }

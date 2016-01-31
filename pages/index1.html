@@ -553,6 +553,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
+                                            <th>ID</th>
                                             <th>Disaster</th>
                                             <th>Task Type</th>
                                             <th>Sent From Location</th>
@@ -1102,18 +1103,20 @@ getMyTasks("315182856", function(data){
 });
 
     $(document).ready(function(){
-            getId(function(uid){
-             getMyTasks(uid, function(data){
+        console.log('Entering');
+            uid = getId(function(array){});
+                console.log("This val" +uid);
+             getMyTasks(uid, function(array){
                 console.log("Printing data object");
-                console.log(data);
+                console.log(array);
                 console.log("Got my Tasks");
-                for(var i =0;i<(data.length);i++)
+                for(var i =0;i<(array.length);i++)
                 {
                     console.log(array[i]);
-                    $("#row13").append('<tr i align=center><td  class=user-name >'+array[i].Disaster+'</td><td>'+array[i].TaskType+'</td><td>'+array[i].SentFromLocation+'</td><td>'+array[i].OriginalTweet+'</td><td>'+array[i].TimeOfTweet+'</td></tr>')
+                    $("#row13").append('<tr i align=center><td class=id>'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>')
                     };
             });
-             });
+             
         });
    </script>
 </body>
