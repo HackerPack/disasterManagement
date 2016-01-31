@@ -652,9 +652,11 @@
   var keyword = document.getElementById("searchKeywords").value;
   searchTask(disaster, keyword, function(array){
             console.log("Got list");
+
+            $("#row12").empty();
+            $("#row12").append('<form>')
             for(var i =0;i<(array.length);i++)
             {
-                $("#row12").empty();
                 console.log(array[i].key());
                 var currentTime = new Date(Date.now());
                 var tweetTime = new Date(array[i].val().TimeOfTweet);
@@ -670,8 +672,15 @@
                         console.log(" I am in else");
                         var Overdue = "No"
                     }
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>');
                 };
+                $('#row12').children('tr').click(function(){
+                console.log(this);
+                $("#myModal").modal('show');
+                currentid = $(this).find('.taskId').text();
+                console.log("Current ID: "+currentid);
+
+            });
             
         });
 
@@ -692,10 +701,7 @@ getMyTasks("315182856", function(data){
                 console.log("Got my Tasks");
                 for(var i =0;i<(array.length);i++)
                 {
-                    pendingTasks = pendingTasks + 1;
-                    console.log("kjdhas");
-                    console.log(pendingTasks);
-                    console.log(array[i]);
+                    pendingTasks++;
                     if(array[i].val().Overdue == "No")
                     {
                     var currentTime = new Date(Date.now());
@@ -725,10 +731,10 @@ getMyTasks("315182856", function(data){
                         var Overdue = "No"
                     }
                 }
-                else
+                    else
                     overdueTasks++;
-                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>')
-                };
+                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>');
+                }
         $("#pendingTasks").html(pendingTasks);
         $("#overdueTasks").html(overdueTasks);
 
@@ -754,14 +760,13 @@ getMyTasks("315182856", function(data){
                     console.log(array[i]);
                     completedTasks++;
 
-                    $("#row14").append('<tr i align=center><td class=taskId style="display:none">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>')
+                    $("#row14").append('<tr i align=center><td class=taskId style="display:none">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>');
 
-                    };
-        $("#completedTasks").html(completedTasks);
+                }
+                $("#completedTasks").html(completedTasks);
 
             });
              console.log("Number of pending");
-console.log(pendingTasks);
 
              
         });
