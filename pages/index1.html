@@ -541,12 +541,10 @@ table .total td {
                                         <tr class ="table-headers">
                                             <!--<th>Choose</th> -->
                                             
-                                            <th>Disaster</th>
                                             <th>Task Type</th>
                                             <th>Sent From Location</th>
                                             <th>Original Tweet</th>
                                             <th>Time of Tweet</th>
-                                            <th>Task Overdue</th>
                                         </tr>
                                     </thead>
                                     <tbody id = "row12">
@@ -557,7 +555,6 @@ table .total td {
                                     <thead>
                                         <tr class = "table-headers">
                                             
-                                            <th>Disaster</th>
                                             <th>Task Type</th>
                                             <th>Sent From Location</th>
                                             <th>Original Tweet</th>
@@ -573,7 +570,6 @@ table .total td {
                                     <thead>
                                         <tr class = "table-headers">
                                             
-                                            <th>Disaster</th>
                                             <th>Task Type</th>
                                             <th>Sent From Location</th>
                                             <th>Original Tweet</th>
@@ -741,7 +737,7 @@ table .total td {
                         console.log(" I am in else");
                         var Overdue = "No"
                     }
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>');
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>');
                 };
                 $('#row12').children('tr').click(function(){
                 console.log(this);
@@ -782,7 +778,7 @@ getMyTasks("315182856", function(data){
                     }else{
                         var Overdue = "No"
                     }
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>')
             };
             $("#row12").append('</form>');
 
@@ -845,7 +841,7 @@ getMyTasks("315182856", function(data){
                 }
                     else
                     overdueTasks++;
-                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>');
+                    $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>');
                 }
                 console.log("Numberof pending");
                 console.log(pendingTasks);
@@ -874,7 +870,7 @@ getMyTasks("315182856", function(data){
                     console.log(array[i]);
                     completedTasks++;
 
-                    $("#row14").append('<tr i align=center><td class=taskId style="display:none">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>');
+                    $("#row14").append('<tr i align=center><td class=taskId style="display:none">'+array[i].key()+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>');
 
                 }
                 $("#completedTasks").html(completedTasks);
