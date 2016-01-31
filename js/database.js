@@ -184,3 +184,27 @@ function getDisasters(hashtag, callback){
     callback(searchResult);
   });
 }
+
+function getAllTasks(callback){
+  var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE);
+  taskRef.orderByChild("Priority").on("value", function(snapshot) {
+
+     var searchResult = [];
+     snapshot.forEach(function(childSnapshot) {
+        var temp = JSON.stringify(childSnapshot.val());
+        if(disaster){
+          var n = temp.search(disaster);
+          if(n>-1){
+            searchResult.push(childSnapshot);
+
+          }
+        }
+        else{
+         searchResult.push(childSnapshot);
+        }
+      });
+     console.log(searchResult);
+
+      callback(searchResult);
+  });
+}

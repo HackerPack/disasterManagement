@@ -37,6 +37,7 @@ def analyse(tweet):
         TaskType = 'GOODS'     
     if 'missing' in OriginalTweet:
         TaskType = 'MISSING'
+        Priority = '5'
     if 'SOS' in OriginalTweet:
         TaskType = 'SOS'
     if 'ambulance' in OriginalTweet:
