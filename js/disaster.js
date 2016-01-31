@@ -4,7 +4,9 @@ function showDisasters(query){
 		}
 }
 $('body').on('click', '.disaster',function(){
-		console.log($(this))
+	var address = "index1.html?" + (this.innerHTML.substring(1));
+		console.log(address);
+		window.location.href = address;
 });
 $('body').ready(function(){
 	var query;
