@@ -70,9 +70,8 @@ function takeTask(uid, requestID, callback){
   taskRef.update({"Taken":uid, "Overdue":"No"}, callback);
 }
 function overdueTrue(requestID, callback){
-  /*
   var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE+requestID);
-  taskRef.update({"Overdue":"Yes"}, callback);*/
+  taskRef.update({"Overdue":"Yes"}, callback);
 }
 function untakeTask(uid, requestID, callback){
   var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE+requestID);
