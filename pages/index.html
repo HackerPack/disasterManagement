@@ -32,6 +32,7 @@
     <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
    <script src="../js/fire_base_constants.js"></script>
     <script src="../js/database.js"></script>
+    <script src="../js/login.js"></script>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -481,34 +482,11 @@
             </div>
             <!-- /.row -->
             <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>Disaster</th>
-                                            <th>Task Type</th>
-                                            <th>Sent From Location</th>
-                                            <th>Original Tweet</th>
-                                            <th>Time of Tweet</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id = "row12">
-                                       
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
+                            
             <div class="row">
 
                 <div class="col-lg-8">
-                <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg" placeholder="Search" id="searchKeywords"/>
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button" onclick="searchTasks()">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
+                
                     <div class="panel panel-default">
                     <div class="row" id="disasters">
 
@@ -990,10 +968,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
     <script>
-     allTasks("ChennaiFloods",function(data){});
-     
-   </script>
-    <script>
      getTwitterWidget("ChennaiFloods",function(data){
         console.log(data[0]["hashtag"]);
         console.log(data[0]["twitterwidget"]);
@@ -1004,30 +978,12 @@
         $("#sidebar").append('<a class="twitter-timeline"  href='+data[0]["link"]+' data-widget-id="'+data[0]["twitterwidget"]+'">#'+data[0]["hashtag"]+' Tweets</a>');
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
      });
+     getId(function(data){});
 
    </script>
 
 
-   <script>
-   $(document).ready(function() { 
-        allTasks('ChennaiFloods',function(array){
-            console.log("Got list");
-            for(var i =0;i<(array.length);i++)
-            {
-                //console.log(array[i]);
-                /*<tr class="odd gradeX">
-                <td>console.log(array[i].Disaster)</td>
-                <td>console.log(array[i].TaskType)</td>
-                <td>console.log(array[i].SentFromLocation)</td>
-                <td>console.log(array[i].OriginalTweet)</td>
-                <td>console.log(array[i].TimeOfTweet)</td>
-                </tr>*/
-                $("#row12").append('<tr i align=center><td  class=user-name >'+array[i].Disaster+'</td><td>'+array[i].TaskType+'</td><td>'+array[i].SentFromLocation+'</td><td>'+array[i].OriginalTweet+'</td><td>'+array[i].TimeOfTweet+'</td></tr>')
-                };
-            
-        });
-    });
-    </script>
+   
     <script src="../js/disaster.js"></script>
 </body>
 </html>
