@@ -498,6 +498,31 @@
                 
               </div>
             </div>
+            <div class="modal fade" id="progressModal" role="dialog">
+              <div class="modal-dialog">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Thank you for volunteering</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are there any changes to the task's progress?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="occompletetask()">Completed</button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="ocuntaketask()">Withdraw from task</button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
             <div class="row">
                 <div class="col-lg-8">
                     <!-- <div class="panel panel-default">
@@ -1050,6 +1075,34 @@
             window.location.href = address;
         });
     }
+    function occompletetask(){
+        console.log("Inside occompletetask");
+        /*getId(function(uid){
+            console.log("UID: "+uid);
+            console.log("CurrentID: "+currentid);
+        });*/
+        var uid = getId(function(data){});
+        completeTask(uid, currentid, function(){
+            console.log("takeTask from octaketask");
+            var address = "index1.html?" +disaster;
+            console.log(address);
+            window.location.href = address;
+        });
+    }
+    function ocuntaketask(){
+        console.log("Inside ocuntaketask");
+        /*getId(function(uid){
+            console.log("UID: "+uid);
+            console.log("CurrentID: "+currentid);
+        });*/
+        var uid = getId(function(data){});
+        untakeTask(uid, currentid, function(){
+            console.log("takeTask from octaketask");
+            var address = "index1.html?" +disaster;
+            console.log(address);
+            window.location.href = address;
+        });
+    }
    $(document).ready(function() { 
         allTasks(disaster,function(array){
             console.log("Got list");
@@ -1124,9 +1177,15 @@ getMyTasks("315182856", function(data){
                 {
                     console.log(array[i]);
                     $("#row13").append('<tr i align=center><td class=id>'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>')
-                    };
+                };
+                $('#row13').children('tr').click(function(){
+                    console.log(this);
+                    $("#progressModal").modal('show');
+                    currentid = $(this).find('.id').text();
+                    console.log("Current ID: "+currentid);
+                });
             });
-             
+
         });
    </script>
 </body>
