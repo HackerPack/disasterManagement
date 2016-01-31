@@ -25,8 +25,8 @@ class TweeterStreamListener(tweepy.StreamListener):
             name = 'NONE'
         else:
             name = status.place.full_name
-        msg =  status.text.encode('utf-8') + '---' + name + '---' + str(status.created_at) 
-        print(str(status.created_at))
+        msg =  status.text + '---' + name + '---' + str(status.created_at)
+        msg = msg.encode('utf-8') 
         try:
             self.producer.send_messages(b'twitterstream', msg)
         except Exception as e:
@@ -58,8 +58,8 @@ if __name__ == '__main__':
 
     # Create stream and bind the listener to it
     stream = tweepy.Stream(auth, listener = TweeterStreamListener(api))
-    stream.filter(track=['#AusOpen'],async=True) 
+    stream.filter(track=['#hoyahacksdisaster']) 
 
     #Custom Filter rules pull all traffic for those filters in real time.
     #stream.filter(track = ['love', 'hate'], languages = ['en'])
-    stream.filter(locations=[-180,-90,180,90], languages = ['en'])
+    #stream.filter(locations=[-180,-90,180,90], languages = ['en'])

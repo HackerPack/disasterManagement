@@ -26,9 +26,15 @@ def analyse(tweet):
     Taken = "0"
     Finished = "0"
     Priority = "0"
+    Disaster = ""
     tweetDict = {}
-    if 'available' in OriginalTweet or 'need' in OriginalTweet :
-        TaskType = 'GOODS'  
+    if '#' in OriginalTweet:
+        start_index = OriginalTweet.index('#')
+        Disaster = OriginalTweet[start_index:OriginalTweet.index(' ',start_index) + 1]
+    if 'available' in OriginalTweet:
+        TaskType = 'GOODS'
+    if 'need' in OriginalTweet:
+        TaskType = 'GOODS'     
     if 'missing' in OriginalTweet:
         TaskType = 'MISSING'
     if 'SOS' in OriginalTweet:
@@ -41,7 +47,7 @@ def analyse(tweet):
     if 'emergency' in OriginalTweet:
         Priority = '10'
     tweetDict['TaskType'] = TaskType
-    #tweetDict['Disaster'] = Disaster
+    tweetDict['Disaster'] = Disaster
     tweetDict['Taken'] = Taken
     tweetDict['Finished'] = Finished
     tweetDict['OriginalTweet'] = OriginalTweet
@@ -49,9 +55,11 @@ def analyse(tweet):
     tweetDict['TimeOfTweet'] = TimeOfTweet
     tweetDict['Priority'] = Priority
     jsons = json.dumps(tweetDict)
-    requests.post('http://hoyadisastermanagement.firebaseio.com/tasks2',json.dumps(tweetDict))
-    command = "curl -X PUT -d '" + str(jsons) + "' 'https://hoyadisastermanagement.firebaseio.com/tasks2.json'"
+    print jsons
+    #requests.post('http://hoyadisastermanagement.firebaseio.com/tasks2',json.dumps(tweetDict))
+    command = "curl -X POST -d '" + str(jsons) + "' 'https://hoyadisastermanagement.firebaseio.com/tasks2.json'"
     run_command = commands.getstatusoutput(command)
+    print run_command
     return 1
     
 
