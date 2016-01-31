@@ -71,11 +71,29 @@ function takeTask(uid, requestID, callback){
 }
 function untakeTask(uid, requestID, callback){
   var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE+requestID);
+  taskRef.once('value',function(data){
+    if(data.val().Overdue == "No")
+    {
+      var userRef = new Firebase(FIRE_BASE_URL+USERS_TABLE+uid);
+      userRef.once('value', function(data) {
+        console.log("Takin away task");
+    var trustLevel = data.val().trustLevel;
+    trustLevel--;
+    userRef.update({"trustLevel":trustLevel},callback);
+    });
+   }
+  });
   taskRef.update({"Taken":"0"}, callback);
 }
 function completeTask(uid, requestID, callback){
   var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE+requestID);
   taskRef.update({"Finished":uid}, callback);
+  var userRef = new Firebase(FIRE_BASE_URL+USERS_TABLE+uid);
+  userRef.once('value', function(data) {
+    var trustLevel = data.val().trustLevel;
+    trustLevel++;
+    userRef.update({"trustLevel":trustLevel},callback);
+  });
 }
 
 /*function getBorrowedBooks(uid, callback){

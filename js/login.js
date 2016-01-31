@@ -2,38 +2,10 @@ ref.onAuth(function(authData) {
 	console.log("outside if")
 	console.log(authData);
 	console.log("in");
-  if (authData) {
+
+  if (authData == null) {
   	console.log("inside if")
-    // save the user's profile into the database so we can list users,
-    // use them in Security and Firebase Rules, and show profiles
-    if (authData.facebook){
-    	  ref.child("users").child(authData.facebook.id).set({
-		      fname: getFName(authData),
-		      lname: getLName(authData),
-		      id: getId(authData)
-	    });
-    }
-    //ref.child("users").child(authData.facebook.id).set({
-      //fname: getFName(authData),
-      //lname: getLName(authData),
-      //id: getId(authData)
-    //});
-		if (authData.twitter){
-			console.log(authData.twitter);
-			ref.child("users").child(authData.twitter.id).set({
-					/*username: authData.twitter.username,
-					displayname: authData.twitter.displayName,
-					id: twitter.id*/
-					fname: authData.twitter.displayName,
-		      		lname: authData.twitter.displayName,
-		      		id: authData.twitter.id
-				});
-		}
-    //ref.child("users").child(authData.twitter.id).set({
-      //fname: getFName(authData),
-      //lname: getLName(authData),
-      //id: getId(authData)
-    //});
+    
   }
 });
 
@@ -65,8 +37,17 @@ function loginFB(){
 	ref.authWithOAuthPopup("facebook", function(error, authData) {
   		if (error) {
    			console.log("Login Failed!", error);
+
   		} else {
   			console.log("Authenticated successfully with payload:", authData.facebook.cachedUserProfile.first_name);
+  			if (authData.facebook){
+    	  ref.child("users").child(authData.facebook.id).set({
+		      fname: getFName(authData),
+		      lname: getLName(authData),
+		      id: getId(authData),
+		      trustLevel: "0"
+	    });
+    }
   			checkSession();
   		}
 	}, {
@@ -79,7 +60,17 @@ function loginTwitter(){
   		if (error) {
    			console.log("Login Failed!", error);
   		} else {
-  			console.log("Authenticated successfully with payload:", authData.twitter.cachedUserProfile.first_name);  //authData
+  			console.log("Authenticated successfully with payload:", authData.twitter.cachedUserProfile.first_name); 
+
+		if (authData.twitter){
+			console.log(authData.twitter);
+			ref.child("users").child(authData.twitter.id).set({
+					fname: authData.twitter.displayName,
+		      		lname: authData.twitter.displayName,
+		      		id: authData.twitter.id,
+		      		trustLevel: "0"
+				});
+		} //authData
   			checkSession();
   		}
 	}, {

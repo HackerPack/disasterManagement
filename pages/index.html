@@ -509,6 +509,11 @@
         var pendingTasks=0;
 
             uid = getId(function(array){});
+            getUser(uid,function(data){
+                console.log("TrustLEvel");
+                console.log(data[0]);
+                $("#trustLevel").html(data[0].trustLevel);
+            });
              getMyTasks(uid, function(array){
                 for(var i =0;i<(array.length);i++)
                 {
