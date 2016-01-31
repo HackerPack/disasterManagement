@@ -489,7 +489,8 @@
                 $("#row12").empty();
                 console.log(array[i].key());
                 var currentTime = new Date(Date.now());
-                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                var tweetTime = new Date(array[i].val().TimeOfTweet);
+                    var hours = Math.abs(currentTime -tweetTime ) / 3600000;
                     
                     if(hours > 24){
                         var Overdue = "Yes"
@@ -514,7 +515,8 @@
                 {
                     pendingTasks++;
                     var currentTime = new Date(Date.now());
-                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                    var tweetTime = new Date(array[i].val().TimeOfTweet);
+                    var hours = Math.abs(currentTime -tweetTime ) / 3600000;
                     
                     if(hours > 24){
                         var Overdue = "Yes"

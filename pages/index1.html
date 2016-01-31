@@ -592,7 +592,8 @@
             {
                 console.log(array[i].key());
                 var currentTime = new Date(Date.now());
-                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                var tweetTime = new Date(array[i].val().TimeOfTweet);
+                var hours = Math.abs(currentTime -tweetTime ) / 3600000;
                     
                     if(hours > 24){
                         var Overdue = "Yes"
@@ -634,12 +635,17 @@
                 $("#row12").empty();
                 console.log(array[i].key());
                 var currentTime = new Date(Date.now());
-                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                var tweetTime = new Date(array[i].val().TimeOfTweet);
+                    var hours = Math.abs(currentTime -tweetTime ) / 3600000;
+                    console.log("hours");
+                    console.log(hours);
                     
                     if(hours > 24){
                         var Overdue = "Yes"
+                        console.log(" I am in if");
 
                     }else{
+                        console.log(" I am in else");
                         var Overdue = "No"
                     }
                 $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
@@ -666,7 +672,8 @@ getMyTasks("315182856", function(data){
                 {
                     console.log(array[i]);
                     var currentTime = new Date(Date.now());
-                    var hours = Math.abs(currentTime - array[i].val().TimeOfTweet) / 3600000;
+                    var tweetTime = new Date(array[i].val().TimeOfTweet);
+                    var hours = Math.abs(currentTime -tweetTime ) / 3600000;
                     
                     if(hours > 24){
                         var Overdue = "Yes"
