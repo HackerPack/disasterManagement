@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
     # Create stream and bind the listener to it
     stream = tweepy.Stream(auth, listener = TweeterStreamListener(api))
-    stream.filter(track=['#hoyahacksdisman']) 
+    stream.filter(track=['#hoyahacksdisman','#chennaifloods']) 
 
     #Custom Filter rules pull all traffic for those filters in real time.
     #stream.filter(track = ['love', 'hate'], languages = ['en'])

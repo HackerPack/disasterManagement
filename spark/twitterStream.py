@@ -8,6 +8,7 @@ import nltk
 import requests
 import json 
 import commands
+
 from HTMLParser import HTMLParser
 
 def main():
@@ -40,11 +41,11 @@ def analyse(tweet):
         Priority = '5'
     elif 'SOS' in OriginalTweet:
         TaskType = 'SOS'
-    elif 'ambulance' in OriginalTweet:
-        TaskType = 'AMBULANCE'
-        Priority = '10'
     else:
         TaskType = 'UNKNOWN'
+    if 'ambulance' in OriginalTweet:
+        TaskType = 'AMBULANCE'
+        Priority = '10'
     if 'emergency' in OriginalTweet:
         Priority = '10'
     if 'urgent' in OriginalTweet:
