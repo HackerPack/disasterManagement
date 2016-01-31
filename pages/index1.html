@@ -525,29 +525,6 @@
             </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <!-- <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Tasks Dashboard
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
-                                        </li>
-                                        <li><a href="#">Another action</a>
-                                        </li>
-                                        <li><a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="input-group col-md-12">
@@ -1125,23 +1102,10 @@
             for(var i =0;i<(array.length);i++)
             {
                 console.log(array[i].key());
-                //console.log(array[i]);
-                /*<tr class="odd gradeX">
-                <td>console.log(array[i].Disaster)</td>
-                <td>console.log(array[i].TaskType)</td>
-                <td>console.log(array[i].SentFromLocation)</td>
-                <td>console.log(array[i].OriginalTweet)</td>
-                <td>console.log(array[i].TimeOfTweet)</td>
-                </tr>*/
-
                 $("#row12").append('<tr i align=center><td class=taskId>'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>')
             };
             $("#row12").append('</form>');
-            //$('.dataTable_wrapper').append('<input type="button" value="Agree?" >');
-/*
 
-                $("#row12").append('<tr i align=center><td class=taskId>'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>')
-                };*/
             $('#row12').children('tr').click(function(){
                 console.log(this);
                 $("#myModal").modal('show');
