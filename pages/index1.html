@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>WolfPack Rescue</title>
+    <title>Rescue Rangers</title>
 
 
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
@@ -164,7 +164,7 @@ table .total td {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index`.html">WolfPack Rescue</a>
+                <a class="navbar-brand" href="index`.html">Rescue Rangers</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -380,26 +380,7 @@ table .total td {
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw" ></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="disaster.html"><i class="fa fa-dashboard fa-fw"></i> You can help!</a>
-                        </li>
-
-                    </ul>
+                    <img src="../img/helping-hand1.jpeg" class ="sidebar-nav" height="700" width="250"/>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
@@ -529,7 +510,7 @@ table .total td {
                                  </span>
                             </div>
                             <div class="dataTable_wrapper">
-                            <div>Tasks not assigned</div>
+                            <h3>Tasks not assigned</h3>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class ="table-headers">
@@ -544,7 +525,7 @@ table .total td {
                                     <tbody id = "row12">
                                     </tbody>
                                 </table>
-                                    <div>Tasks pending</div>
+                                    <h3>Tasks pending</h3>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class = "table-headers">
@@ -559,7 +540,7 @@ table .total td {
                                     <tbody id = "row13">
                                     </tbody>
                                 </table>
-                                    <div>Tasks Completed</div>
+                                    <h3>Tasks Completed</h3>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class = "table-headers">
@@ -733,7 +714,7 @@ table .total td {
                         console.log(" I am in else");
                         var Overdue = "No"
                     }
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>');
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td></tr>');
                 };
                 $('#row12').children('tr').click(function(){
                 console.log(this);

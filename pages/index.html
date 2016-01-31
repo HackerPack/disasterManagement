@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>WolfPack Rescue</title>
+    <title>Rescue Rangers</title>
 
 
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
@@ -170,7 +170,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">WolfPack Rescue</a>
+                <a class="navbar-brand" href="index.html">Rescue Rangers</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -386,26 +386,7 @@
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="disaster.html"><i class="fa fa-dashboard fa-fw"></i> You can help!</a>
-                        </li>
-                        
-                    </ul>
+                    <img src="../img/helping-hand1.jpeg" class ="sidebar-nav" height="700" width="250"/>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
@@ -483,7 +464,13 @@
 
 
             <div class="dataTable_wrapper">
-                <div>My Pending Tasks</div>
+            <h3>Major Incidents Happening Around the world</h3>
+                <p></p>
+             <div class="row" id="disasters" >
+
+
+                    </div>
+                <h3>My Pending Tasks</h3>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class ="table-headers">
@@ -499,9 +486,9 @@
                                     <tbody id = "row13">
                                     </tbody>
                                 </table>
-                                <div>
-                                    <li>My Completed Tasks</li>
-                                </div>
+                                <h3>
+                                    My Completed Tasks
+                                </h3>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class ="table-headers">
@@ -523,13 +510,9 @@
             <div class="row">
 
                 <div class="col-lg-8">
-                    <div>Major Incidents Happening Around the world</div>
-                <p></p>
                     
-                    <div class="row" id="disasters">
-
-
-                    </div>
+                    
+                   
                        
                         
                         <!-- /.panel-heading -->
@@ -663,7 +646,7 @@
                     $("#row14").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>');
                     }
         $("#completedTasks").html(completedTasks);
-                    
+
             });
              
         console.log('Entering');
