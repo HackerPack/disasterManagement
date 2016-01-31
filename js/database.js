@@ -67,7 +67,7 @@ function saveTask(task, callback){
   
 function takeTask(uid, requestID, callback){
   var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE+requestID);
-  taskRef.update({"Taken":uid}, callback);
+  taskRef.update({"Taken":uid, "Overdue":"No"}, callback);
 }
 function overdueTrue(requestID, callback){
   /*
@@ -88,7 +88,7 @@ function untakeTask(uid, requestID, callback){
     });
    }
   });
-  taskRef.update({"Taken":"0"}, callback);
+  taskRef.update({"Taken":"0","Overdue":"No"}, callback);
 }
 function completeTask(uid, requestID, callback){
   var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE+requestID);
