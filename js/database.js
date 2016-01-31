@@ -141,7 +141,8 @@ function getTwitterWidget(hashtag, callback){
 
   //twitterRef.orderByKey().equalTo(hashtag).on("value", function(snapshot) {
     twitterRef.once('value', function(data){
-      //console.log(data.val());
+      console.log(hashtag);
+      console.log(data.val());
       searchResult.push(data.val());
      //callback(searchResult);
      /*snapshot.forEach(function(childSnapshot) {
@@ -156,9 +157,6 @@ function getTwitterWidget(hashtag, callback){
          searchResult.push(childSnapshot.val());
         }
       });*/
-    $.each(data.val(), function(key, value){
-      //console.log(value);
-    })
      //console.log(searchResult);
           //alert(searchResult);
      callback(searchResult);
