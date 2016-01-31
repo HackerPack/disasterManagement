@@ -603,50 +603,6 @@
 
 }
 
-    $(document).ready(function(){
-        var pendingTasks = 0;
-        var completedTasks = 0;
-        var overdueTasks = 0;
-        allTasks(disaster,function(array){
-            console.log("Got list");
-            $("#row12").append('<form>')
-            for(var i =0;i<(array.length);i++)
-            {
-                console.log(array[i].key());
-                var currentTime = new Date(Date.now());
-                var tweetTime = new Date(array[i].val().TimeOfTweet);
-                var hours = Math.abs(currentTime -tweetTime ) / 3600000;
-                    
-                    if(hours > 24){
-                        var Overdue = "Yes";
-                        overdueTasks++;
-
-                    }else{
-                        var Overdue = "No"
-                    }
-                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
-            };
-            $("#row12").append('</form>');
-
-            $('#row12').children('tr').click(function(){
-                console.log(this);
-                $("#myModal").modal('show');
-                currentid = $(this).find('.taskId').text();
-                console.log("Current ID: "+currentid);
-
-            });
-        });
-        getTwitterWidget(disaster,function(data){
-        console.log(data[0]["hashtag"]);
-        console.log(data[0]["twitterwidget"]);
-        console.log(data[0]["link"]);
-        //console.log(data[0][link]);
-        //console.log(data[0][twitterwidget]);
-        console.log("from getTwitterWidget");
-        $("#sidebar").append('<a class="twitter-timeline"  href='+data[0]["link"]+' data-widget-id="'+data[0]["twitterwidget"]+'">#'+data[0]["hashtag"]+' Tweets</a>');
-        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-     });
-    });
    function searchTasks()
 {
   var keyword = document.getElementById("searchKeywords").value;
@@ -692,6 +648,48 @@ getMyTasks("315182856", function(data){
 });
 
     $(document).ready(function(){
+        var pendingTasks = 0;
+        var completedTasks = 0;
+        var overdueTasks = 0;
+        allTasks(disaster,function(array){
+            console.log("Got list");
+            $("#row12").append('<form>')
+            for(var i =0;i<(array.length);i++)
+            {
+                console.log(array[i].key());
+                var currentTime = new Date(Date.now());
+                var tweetTime = new Date(array[i].val().TimeOfTweet);
+                var hours = Math.abs(currentTime -tweetTime ) / 3600000;
+                    
+                    if(hours > 24){
+                        var Overdue = "Yes";
+                        overdueTasks++;
+
+                    }else{
+                        var Overdue = "No"
+                    }
+                $("#row12").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+Overdue+'</td></tr>')
+            };
+            $("#row12").append('</form>');
+
+            $('#row12').children('tr').click(function(){
+                console.log(this);
+                $("#myModal").modal('show');
+                currentid = $(this).find('.taskId').text();
+                console.log("Current ID: "+currentid);
+
+            });
+        });
+        getTwitterWidget(disaster,function(data){
+        console.log(data[0]["hashtag"]);
+        console.log(data[0]["twitterwidget"]);
+        console.log(data[0]["link"]);
+        //console.log(data[0][link]);
+        //console.log(data[0][twitterwidget]);
+        console.log("from getTwitterWidget");
+        $("#sidebar").append('<a class="twitter-timeline"  href='+data[0]["link"]+' data-widget-id="'+data[0]["twitterwidget"]+'">#'+data[0]["hashtag"]+' Tweets</a>');
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+     });
         console.log('Entering');
             uid = getId(function(array){});
                 console.log("This val" +uid);
@@ -735,6 +733,8 @@ getMyTasks("315182856", function(data){
                     overdueTasks++;
                     $("#row13").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+array[i].val().Overdue+'</td></tr>');
                 }
+                console.log("Numberof pending");
+                console.log(pendingTasks);
         $("#pendingTasks").html(pendingTasks);
         $("#overdueTasks").html(overdueTasks);
 
