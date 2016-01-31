@@ -477,9 +477,9 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="panel panel-default">
+                    <!-- <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Tasks Dashboard
                             <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -505,7 +505,7 @@
                             <div id="morris-area-chart"></div>
                         </div>
                         <!-- /.panel-body -->
-                    </div>
+                    </div> -->
                     <!-- /.panel -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -957,7 +957,7 @@
     <script src="../js/database.js"></script>
     <script></script>
     <script>
-     allTasks("ChennaiFlods",function(data){});
+     allTasks("ChennaiFloods",function(data){});
    </script>
     <script>
      getTwitterWidget("ChennaiFloods",function(data){
@@ -970,6 +970,7 @@
         $("#sidebar").append('<a class="twitter-timeline"  href='+data[0]["link"]+' data-widget-id="'+data[0]["twitterwidget"]+'">#'+data[0]["hashtag"]+' Tweets</a>');
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
      });
+     var disaster = window.location.search.substring(1);
 
    </script>
 </body>

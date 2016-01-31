@@ -29,11 +29,6 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
-   <script src="../js/fire_base_constants.js"></script>
-    <script src="../js/database.js"></script>
-
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -487,34 +482,33 @@
                                         <tr>
                                             <th>Disaster</th>
                                             <th>Task Type</th>
-                                            <th>Sent From Location</th>
                                             <th>Original Tweet</th>
+                                            <th>Sent From Location</th>
                                             <th>Time of Tweet</th>
                                         </tr>
                                     </thead>
-                                    <tbody id = "row12">
-                                       
+                                    <tbody id = row12>
+                                        <tr class="odd gradeX">
+                                            <td>Trident</td>
+                                            <td>Internet Explorer 4.0</td>
+                                            <td>Win 95+</td>
+                                            <td class="center">4</td>
+                                            <td class="center">X</td>
+                                        </tr>
+                                        <tr class="even gradeC">
+                                            <td>Trident</td>
+                                            <td>Internet Explorer 5.0</td>
+                                            <td>Win 95+</td>
+                                            <td class="center">5</td>
+                                            <td class="center">C</td>
+                                        </tr>
                                         
                                     </tbody>
                                 </table>
                             </div>
             <div class="row">
-
                 <div class="col-lg-8">
-                <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg" placeholder="Search" id="searchKeywords"/>
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button" onclick="searchTasks()">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
                     <div class="panel panel-default">
-                    <div class="row" id="disasters">
-
-
-                        </div>
-                       
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Tasks Dashboard
                             <div class="pull-right">
@@ -989,9 +983,12 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+   <script src="../js/fire_base_constants.js"></script>
+    <script src="../js/database.js"></script>
+    <script></script>
     <script>
      allTasks("ChennaiFloods",function(data){});
-     
    </script>
     <script>
      getTwitterWidget("ChennaiFloods",function(data){
@@ -1007,27 +1004,35 @@
 
    </script>
 
-
    <script>
-   $(document).ready(function() { 
-        allTasks('ChennaiFloods',function(array){
-            console.log("Got list");
-            for(var i =0;i<(array.length);i++)
+    $(document).ready(function() { 
+        findClosestWalks(function(array){
+            for(var i =0;i<(array.length-1);i+=2)
             {
-                //console.log(array[i]);
-                /*<tr class="odd gradeX">
-                <td>console.log(array[i].Disaster)</td>
-                <td>console.log(array[i].TaskType)</td>
-                <td>console.log(array[i].SentFromLocation)</td>
-                <td>console.log(array[i].OriginalTweet)</td>
-                <td>console.log(array[i].TimeOfTweet)</td>
-                </tr>*/
-                $("#row12").append('<tr i align=center><td  class=user-name >'+array[i].Disaster+'</td><td>'+array[i].TaskType+'</td><td>'+array[i].SentFromLocation+'</td><td>'+array[i].OriginalTweet+'</td><td>'+array[i].TimeOfTweet+'</td></tr>')
-                };
-            
+                var uid = array[i+1].UID;
+                var eventID = array[i].EventID;
+                var eventID2 = array[i+1].EventID;
+                var source_lat = array[i+1].Source.Latitude;
+                var source_long = array[i+1].Source.Longitude;
+                var dest_lat = array[i+1].Destination.Latitude;
+                var dest_long = array[i+1].Destination.Longitude;
+                var ArrivalTime = array[i+1].ArrivingTime;
+                get_name_from_uid(uid, function(uname){
+                    $("#row12").append('<tr i align=center><td  class=user-name >'+uname+'</td><td>'+source_lat+'</td><td>'+source_long+'</td><td>'+dest_lat+'</td><td>'+dest_long+'</td><td>'+ArrivalTime+'</td><td> <button type="button" onclick=inviteFriend();>Invite</button></td></tr>');
+                });
+            }
         });
-    });
+            if ($('html').hasClass('desktop')) {
+                $.stellar({
+                    horizontalScrolling: false,
+                    verticalOffset: 20,
+                    resposive: true,
+                    hideDistantElements: true,
+                });
+            }
+        }); 
     </script>
-    <script src="../js/disaster.js"></script>
 </body>
+
 </html>
+
