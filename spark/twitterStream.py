@@ -48,9 +48,9 @@ def analyse(tweet):
     tweetDict['Location'] = Location
     tweetDict['TimeOfTweet'] = TimeOfTweet
     tweetDict['Priority'] = Priority
-    jsons = json.dumps(tweetDicts)
+    jsons = json.dumps(tweetDict)
     requests.post('http://hoyadisastermanagement.firebaseio.com/tasks2',json.dumps(tweetDict))
-    command = "curl -X PUT -d " + str(jsons) + " 'https://hoyadisastermanagement.firebaseio.com/tasks2.json'"
+    command = "curl -X PUT -d '" + str(jsons) + "' 'https://hoyadisastermanagement.firebaseio.com/tasks2.json'"
     run_command = commands.getstatusoutput(command)
     return 1
     
