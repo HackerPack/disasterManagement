@@ -399,7 +399,7 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div id="huge">26</div>
                                     <div>New Comments!</div>
                                 </div>
                             </div>
@@ -968,7 +968,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
     <script>
-     getTwitterWidget("ChennaiFloods",function(data){
+     getTwitterWidgetAll(function(data){
         console.log(data[0]["hashtag"]);
         console.log(data[0]["twitterwidget"]);
         console.log(data[0]["link"]);
