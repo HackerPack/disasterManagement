@@ -111,7 +111,4 @@ function checkSessionLogin(){
 	}
 }
 
-$("#logout_anchor").click(function(){
-    logout();
-});
 
