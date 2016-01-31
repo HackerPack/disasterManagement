@@ -686,11 +686,8 @@ table .total td {
   var keyword = document.getElementById("searchKeywords").value;
   searchTask(disaster, keyword, function(array){
             console.log("Got list");
-<<<<<<< HEAD
             $('#unassigned').append(disaster);
             $("#row12").append('<form>')
-=======
->>>>>>> c34c7095cc1341ceb93e2b1048b82d1acd9be4dd
             for(var i =0;i<(array.length);i++)
             {
                 $("#row12").empty();
@@ -870,13 +867,8 @@ getMyTasks("315182856", function(data){
                     completedTasks++;
 
                     $("#row14").append('<tr i align=center><td class=taskId style="display:none">'+array[i].key()+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().Location+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>');
-
-<<<<<<< HEAD
-                    $("#row14").append('<tr i align=center><td class=taskId style="display: none;">'+array[i].key()+'</td><td  class=user-name >'+array[i].val().Disaster+'</td><td>'+array[i].val().TaskType+'</td><td>'+array[i].val().SentFromLocation+'</td><td>'+array[i].val().OriginalTweet+'</td><td>'+array[i].val().TimeOfTweet+'</td><td>'+"No"+'</td></tr>')
-=======
                 }
                 $("#completedTasks").html(completedTasks);
->>>>>>> c34c7095cc1341ceb93e2b1048b82d1acd9be4dd
 
             });
              console.log("Number of pending");
