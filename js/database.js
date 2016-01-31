@@ -69,6 +69,10 @@ function takeTask(uid, requestID, callback){
   var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE+requestID);
   taskRef.update({"Taken":uid}, callback);
 }
+function untakeTask(uid, requestID, callback){
+  var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE+requestID);
+  taskRef.update({"Taken":"0"}, callback);
+}
 function completeTask(uid, requestID, callback){
   var taskRef = new Firebase(FIRE_BASE_URL+TASKS_TABLE+requestID);
   taskRef.update({"Finished":uid}, callback);
