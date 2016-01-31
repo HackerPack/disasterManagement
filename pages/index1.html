@@ -485,14 +485,7 @@
                     <!-- /.panel -->
                     
                     <!-- /.panel -->
-                    <div class="chat-panel panel panel-default">
-                        
-                        <!-- /.panel-body -->
-                        <div class="panel-footer">
-                            
-                        </div>
-                        <!-- /.panel-footer -->
-                    </div>
+
                     <!-- /.panel .chat-panel -->
                 </div>
                 <!-- /.col-lg-4 -->
@@ -627,7 +620,6 @@
    function searchTasks()
 {
   var keyword = document.getElementById("searchKeywords").value;
-  var disaster = window.location.search.substring(1).toLowerCase();
   searchTask(disaster, keyword, function(array){
             console.log("Got list");
             for(var i =0;i<(array.length);i++)
