@@ -38,7 +38,17 @@ ref.onAuth(function(authData) {
 });
 
 function getId(authData){
+	authData = ref.getAuth();
+	if(authData.facebook)
+		{console.log(authData.facebook.id);
 	return authData.facebook.id;
+}
+else if(authData.twitter)
+{
+	console.log(authData.twitter.id);
+	return authData.twitter.id;
+
+}
 }
 
 function getFName(authData){
