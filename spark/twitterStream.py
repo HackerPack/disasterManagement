@@ -1,6 +1,7 @@
 from pyspark import SparkConf, SparkContext
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
+from geopy.geocoders import Nominatim
 import operator
 import numpy as np
 import matplotlib.pyplot as plt
@@ -15,13 +16,13 @@ def main():
     sc = SparkContext(conf=conf)
     ssc = StreamingContext(sc, 10)   # Create a streaming context with batch interval of 10 sec
     ssc.checkpoint("checkpoint")
-   
-    stream(ssc,100) 
+    geolocator = Nominatim()
+    stream(ssc,geolocator,100) 
 
 
 
-def analyse(tweet):
-    OriginalTweet,Location,TimeOfTweet = tweet.split('---')
+def analyse(tweet,geolocator):
+    OriginalTweet,Location,TimeOfTweet,Latitude,Longitude = tweet.split('---')
     TaskType = ""
     Taken = "0"
     Finished = "0"
@@ -57,6 +58,8 @@ def analyse(tweet):
     tweetDict['Location'] = Location
     tweetDict['TimeOfTweet'] = TimeOfTweet
     tweetDict['Priority'] = Priority
+    tweetDict['Latitude'] = float(Latitude)
+    tweetDict['Longitude'] = float(Longitude)
     jsons = json.dumps(tweetDict)
     #print jsons
     #requests.post('http://hoyadisastermanagement.firebaseio.com/tasks2',json.dumps(tweetDict))
@@ -67,7 +70,7 @@ def analyse(tweet):
     
 
 
-def stream(ssc, duration):
+def stream(ssc,geolocator,duration):
     kstream = KafkaUtils.createDirectStream(
         ssc, topics = ['twitterstream'], kafkaParams = {"metadata.broker.list": 'localhost:9092'})
     tweets = kstream.map(lambda x: x[1].encode("ascii","ignore"))
@@ -76,7 +79,7 @@ def stream(ssc, duration):
     # Keep track of a running total counts and print this at every time step (use the pprint function).
     # YOUR CODE HERE
     tweets.pprint()
-    tweetDstream = tweets.map(lambda line: analyse(line))
+    tweetDstream = tweets.map(lambda line: analyse(line,geolocator))
     tweetDstream.pprint(2)
     #tweetDstream.pprint(2)    
     # Let the counts variable hold the word counts for all time steps

@@ -25,7 +25,13 @@ class TweeterStreamListener(tweepy.StreamListener):
             name = 'NONE'
         else:
             name = status.place.full_name
-        msg =  status.text + '---' + name + '---' + str(status.created_at)
+        if status.coordinates:
+            coord = status.coordinates
+            print str(coord)
+            msg =  status.text + '---' + name + '---' + str(status.created_at) + '---' + str(coord['coordinates'][0]) + '---' +str(coord['coordinates'][1])
+        else:
+           msg =  status.text + '---' + name + '---' + str(status.created_at) + '---' + 'NONE' + '---' 'NONE'
+        
         msg = msg.encode('utf-8') 
         try:
             self.producer.send_messages(b'twitterstream', msg)
