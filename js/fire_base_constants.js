@@ -1,4 +1,4 @@
-var FIRE_BASE_URL = "https://rock-paper-scissors-game.firebaseio.com/";
+var FIRE_BASE_URL = "https://hoyadisastermanagement.firebaseio.com/";
 var TASKS_TABLE = "tasks/";
 var HASHTAGS_TABLE = "twitterhashtags/";
 var USERS_TABLE = "users/";
